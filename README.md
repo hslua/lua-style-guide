@@ -24,16 +24,11 @@ if you find any mistakes or typos.
   11. [Semicolons](#semicolons)
   12. [Type Casting & Coercion](#type-casting--coercion)
   13. [Naming Conventions](#naming-conventions)
-  14. [Accessors](#accessors)
-  15. [Constructors](#constructors)
-  16. [Modules](#modules)
-  17. [File Structure](#file-structure)
-  18. [Testing](#testing)
-  19. [Performance](#performance)
-  20. [Resources](#resources)
-  21. [In the Wild](#in-the-wild)
-  22. [Contributors](#contributors)
-  23. [License](#license)
+  14. [Modules](#modules)
+  15. [File Structure](#file-structure)
+  16. [Testing](#testing)
+  17. [Contributors](#contributors)
+  18. [License](#license)
 
 ## Types
 
