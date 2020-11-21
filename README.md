@@ -70,7 +70,7 @@ if you find any mistakes or typos.
 
     **[[⬆]](#TOC)**
 
-## <a name='tables'>Tables</a>
+## Tables
 
   - Use the constructor syntax for table property creation where
     possible.
