@@ -202,17 +202,23 @@ if you find any mistakes or typos.
     [Smalls Functions Are Good For The
     Universe](http://kikito.github.io/blog/2012/03/16/small-functions-are-good-for-the-universe/).
 
-  - Prefer function syntax over variable syntax. This helps
-    differentiate between named and anonymous functions.
+  - Prefer variable syntax over function syntax over. 
 
     ```lua
     -- bad
-    local nope = function(name, options)
+    local function bad(name, options)
       -- ...stuff...
     end
-
+    function M.bad(name, options)
+      -- ...stuff...
+    end
+    
     -- good
-    local function yup(name, options)
+    local good = function(name, options)
+      -- ...stuff...
+    end
+    
+    M.good = function(name, options)
       -- ...stuff...
     end
     ```
@@ -223,12 +229,12 @@ if you find any mistakes or typos.
 
     ```lua
     -- bad
-    local function nope(name, options, arg)
+    local nope = function(name, options, arg)
       -- ...stuff...
     end
 
     -- good
-    local function yup(name, options, ...)
+    local yup = function(name, options, ...)
       -- ...stuff...
     end
     ```
