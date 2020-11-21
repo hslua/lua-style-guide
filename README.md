@@ -1,43 +1,44 @@
 # Lua Style Guide
 
-This style guide contains a list of guidelines that we try to follow for our
-projects. It does not attempt to make arguments for the styles; its goal is
-to provide consistency across projects.
+This style guide contains a list of guidelines that we try to follow
+for our projects. It does not attempt to make arguments for the
+styles; its goal is to provide consistency across projects.
 
-Feel free to fork this style guide and change to your own
-liking, and file issues / pull requests if you have questions, comments, or if
-you find any mistakes or typos.
+Feel free to fork this style guide and change to your own liking,
+and file issues / pull requests if you have questions, comments, or
+if you find any mistakes or typos.
 
 
 ## <a name='TOC'>Table of Contents</a>
 
-  1. [Types](#types)
-  1. [Tables](#tables)
-  1. [Strings](#strings)
-  1. [Functions](#functions)
-  1. [Properties](#properties)
-  1. [Variables](#variables)
-  1. [Conditional Expressions & Equality](#conditionals)
-  1. [Blocks](#blocks)
-  1. [Whitespace](#whitespace)
-  1. [Commas](#commas)
-  1. [Semicolons](#semicolons)
-  1. [Type Casting & Coercion](#type-coercion)
-  1. [Naming Conventions](#naming-conventions)
-  1. [Accessors](#accessors)
-  1. [Constructors](#constructors)
-  1. [Modules](#modules)
-  1. [File Structure](#file-structure)
-  1. [Testing](#testing)
-  1. [Performance](#performance)
-  1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Contributors](#contributors)
-  1. [License](#license)
+   1. [Types](#types)
+   2. [Tables](#tables)
+   3. [Strings](#strings)
+   4. [Functions](#functions)
+   5. [Properties](#properties)
+   6. [Variables](#variables)
+   7. [Conditional Expressions & Equality](#conditional-expressions--equality)
+   8. [Blocks](#blocks)
+   9. [Whitespace](#whitespace)
+  10. [Commas](#commas)
+  11. [Semicolons](#semicolons)
+  12. [Type Casting & Coercion](#type-casting--coercion)
+  13. [Naming Conventions](#naming-conventions)
+  14. [Accessors](#accessors)
+  15. [Constructors](#constructors)
+  16. [Modules](#modules)
+  17. [File Structure](#file-structure)
+  18. [Testing](#testing)
+  19. [Performance](#performance)
+  20. [Resources](#resources)
+  21. [In the Wild](#in-the-wild)
+  22. [Contributors](#contributors)
+  23. [License](#license)
 
-## <a name='types'>Types</a>
+## Types
 
-  - **Primitives**: When you access a primitive type you work directly on its value
+  - **Primitives**: When you access a primitive type you work
+    directly on its value
 
     + `string`
     + `number`
@@ -53,7 +54,8 @@ you find any mistakes or typos.
     print(foo, bar) -- => 1	9
     ```
 
-  - **Complex**: When you access a complex type you work on a reference to its value
+  - **Complex**: When you access a complex type you work on a
+    reference to its value
 
     + `table`
     + `function`
@@ -75,7 +77,8 @@ you find any mistakes or typos.
 
 ## <a name='tables'>Tables</a>
 
-  - Use the constructor syntax for table property creation where possible.
+  - Use the constructor syntax for table property creation where
+    possible.
 
     ```lua
     -- bad
@@ -109,9 +112,10 @@ you find any mistakes or typos.
     }
     ```
 
-  - Consider `nil` properties when selecting lengths.
-    A good idea is to store an `n` property on lists that contain the length
-    (as noted in [Storing Nils in Tables](http://lua-users.org/wiki/StoringNilsInTables))
+  - Consider `nil` properties when selecting lengths. A good idea is
+    to store an `n` property on lists that contain the length (as
+    noted in [Storing Nils in
+    Tables](http://lua-users.org/wiki/StoringNilsInTables))
 
     ```lua
     -- nils don't count
@@ -143,7 +147,7 @@ you find any mistakes or typos.
 
     **[[⬆]](#TOC)**
 
-## <a name='strings'>Strings</a>
+## Strings
 
   - Use single quotes `''` for strings.
 
@@ -161,8 +165,9 @@ you find any mistakes or typos.
     local full_name = 'Bob ' .. self.last_name
     ```
 
-  - Strings longer than 80 characters should be written across multiple lines
-    using concatenation. This allows you to indent nicely.
+  - Strings longer than 80 characters should be written across
+    multiple lines using concatenation. This allows you to indent
+    nicely.
 
     ```lua
     -- bad
@@ -197,11 +202,13 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='functions'>Functions</a>
-  - Prefer lots of small functions to large, complex functions. [Smalls Functions Are Good For The Universe](http://kikito.github.io/blog/2012/03/16/small-functions-are-good-for-the-universe/).
+## Functions
+  - Prefer lots of small functions to large, complex functions.
+    [Smalls Functions Are Good For The
+    Universe](http://kikito.github.io/blog/2012/03/16/small-functions-are-good-for-the-universe/).
 
-  - Prefer function syntax over variable syntax. This helps differentiate
-    between named and anonymous functions.
+  - Prefer function syntax over variable syntax. This helps
+    differentiate between named and anonymous functions.
 
     ```lua
     -- bad
@@ -215,7 +222,9 @@ you find any mistakes or typos.
     end
     ```
 
-  - Never name a parameter `arg`, this will take precendence over the `arg` object that is given to every function scope in older versions of Lua.
+  - Never name a parameter `arg`, this will take precendence over
+    the `arg` object that is given to every function scope in older
+    versions of Lua.
 
     ```lua
     -- bad
@@ -255,7 +264,7 @@ you find any mistakes or typos.
   **[[⬆]](#TOC)**
 
 
-## <a name='properties'>Properties</a>
+## Properties
 
   - Use dot notation when accessing known properties.
 
@@ -272,8 +281,8 @@ you find any mistakes or typos.
     local is_jedi = luke.jedi
     ```
 
-  - Use subscript notation `[]` when accessing properties with a variable
-    or if using a table as a list.
+  - Use subscript notation `[]` when accessing properties with a
+    variable or if using a table as a list.
 
     ```lua
     local luke = {
@@ -291,10 +300,11 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='variables'>Variables</a>
+## Variables
 
-  - Always use `local` to declare variables. Not doing so will result in
-    global variables to avoid polluting the global namespace.
+  - Always use `local` to declare variables. Not doing so will
+    result in global variables to avoid polluting the global
+    namespace.
 
     ```lua
     -- bad
@@ -304,8 +314,8 @@ you find any mistakes or typos.
     local superPower = SuperPower()
     ```
 
-  - Assign variables at the top of their scope where possible. This makes it
-    easier to check for existing variables.
+  - Assign variables at the top of their scope where possible. This
+    makes it easier to check for existing variables.
 
     ```lua
     -- bad
@@ -344,9 +354,10 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='conditionals'>Conditional Expressions & Equality</a>
+## Conditional Expressions & Equality
 
-  - False and nil are *falsy* in conditional expressions. All else is true.
+  - False and nil are *falsy* in conditional expressions. All else
+    is true.
 
     ```lua
     local str = ''
@@ -356,8 +367,8 @@ you find any mistakes or typos.
     end
     ```
 
-  - Use shortcuts when you can, unless you need to know the difference between
-    false and nil.
+  - Use shortcuts when you can, unless you need to know the
+    difference between false and nil.
 
     ```lua
     -- bad
@@ -371,8 +382,9 @@ you find any mistakes or typos.
     end
     ```
 
-  - Prefer *true* statements over *false* statements where it makes sense.
-    Prioritize truthy conditions when writing multiple conditions.
+  - Prefer *true* statements over *false* statements where it makes
+    sense. Prioritize truthy conditions when writing multiple
+    conditions.
 
     ```lua
     --bad
@@ -390,9 +402,9 @@ you find any mistakes or typos.
     end
     ```
 
-  - Prefer defaults to `else` statements where it makes sense. This results in
-    less complex and safer code at the expense of variable reassignment, so
-    situations may differ.
+  - Prefer defaults to `else` statements where it makes sense. This
+    results in less complex and safer code at the expense of
+    variable reassignment, so situations may differ.
 
     ```lua
     --bad
@@ -429,7 +441,8 @@ you find any mistakes or typos.
     end
 
     local function brew_coffee(machine)
-      return machine and machine.is_loaded and 'coffee brewing' or 'fill your water'
+      return machine and machine.is_loaded
+        and 'coffee brewing' or 'fill your water'
     end
     ```
 
@@ -437,10 +450,11 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='blocks'>Blocks</a>
+## Blocks
 
-  - Single line blocks are okay for *small* statements. Try to keep lines to 80 characters.
-    Indent lines if they overflow past the limit.
+  - Single line blocks are okay for *small* statements. Try to keep
+    lines to 80 characters. Indent lines if they overflow past the
+    limit.
 
     ```lua
     -- good
@@ -466,9 +480,10 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='whitespace'>Whitespace</a>
+## Whitespace
 
-  - Use soft tabs set to 2 spaces. Tab characters and 4-space tabs result in public flogging.
+  - Use soft tabs set to 2 spaces. Tab characters and 4-space tabs
+    result in public flogging.
 
     ```lua
     -- bad
@@ -487,7 +502,8 @@ you find any mistakes or typos.
     end
     ```
 
-  - Place 1 space before opening and closing braces. Place no spaces around parens.
+  - Place 1 space before opening and closing braces. Place no spaces
+    around parens.
 
     ```lua
     -- bad
@@ -582,9 +598,10 @@ you find any mistakes or typos.
 
     **[[⬆]](#TOC)**
 
-## <a name='commas'>Commas</a>
+## Commas
 
-  - Leading commas aren't okay. An ending comma on the last item is okay but discouraged.
+  - Leading commas aren't okay. An ending comma on the last item is
+    okay but discouraged.
 
     ```lua
     -- bad
@@ -612,7 +629,7 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='semicolons'>Semicolons</a>
+## Semicolons
 
   - **Nope.** Separate statements onto multiple lines.
 
@@ -630,11 +647,13 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='type-coercion'>Type Casting & Coercion</a>
+## Type Casting & Coercion
 
-  - Perform type coercion at the beginning of the statement. Use the built-in functions. (`tostring`, `tonumber`, etc.)
+  - Perform type coercion at the beginning of the statement. Use the
+    built-in functions. (`tostring`, `tonumber`, etc.)
 
-  - Use `tostring` for strings if you need to cast without string concatenation.
+  - Use `tostring` for strings if you need to cast without string
+    concatenation.
 
     ```lua
     -- bad
@@ -659,10 +678,11 @@ you find any mistakes or typos.
     **[[⬆]](#TOC)**
 
 
-## <a name='naming-conventions'>Naming Conventions</a>
+## Naming Conventions
 
-  - Avoid single letter names. Be descriptive with your naming. You can get
-    away with single-letter names when they are variables in loops.
+  - Avoid single letter names. Be descriptive with your naming. You
+    can get away with single-letter names when they are variables in
+    loops.
 
     ```lua
     -- bad
@@ -685,8 +705,8 @@ you find any mistakes or typos.
     end
     ```
 
-  - Use snake_case when naming objects, functions, and instances. Tend towards
-    verbosity if unsure about naming.
+  - Use snake_case when naming objects, functions, and instances.
+    Tend towards verbosity if unsure about naming.
 
     ```lua
     -- bad
@@ -719,7 +739,8 @@ you find any mistakes or typos.
 
     **[[⬆]](#TOC)**
 
-  - Use `is` or `has` for boolean-returning functions that are part of tables.
+  - Use `is` or `has` for boolean-returning functions that are part
+    of tables.
 
     ```lua
     --bad
@@ -733,11 +754,11 @@ you find any mistakes or typos.
     end
     ```
 
-## <a name='modules'>Modules</a>
+## Modules
 
   - The module should return a table or function.
-  - The module should not use the global namespace for anything ever. The
-    module should be a closure.
+  - The module should not use the global namespace for anything
+    ever. The module should be a closure.
   - The file should be named like the module.
 
     ```lua
@@ -754,17 +775,19 @@ you find any mistakes or typos.
     return setmetatable(thing, meta)
     ```
 
-  - Note that modules are [loaded as singletons](http://lua-users.org/wiki/TheEssenceOfLoadingCode)
-    and therefore should usually be factories (a function returning a new instance of a table)
-    unless static (like utility libraries.)
+  - Note that modules are [loaded as
+    singletons](http://lua-users.org/wiki/TheEssenceOfLoadingCode)
+    and therefore should usually be factories (a function returning
+    a new instance of a table) unless static (like utility
+    libraries.)
 
   **[[⬆]](#TOC)**
 
-## <a name='file-structrure'>File Structure</a>
+## File Structure
 
   - Files should be named in all lowercase.
-  - Lua files should be in a top-level `src` folder. The main library file should
-    be called `modulename.lua`.
+  - Lua files should be in a top-level `src` folder. The main
+    library file should be called `modulename.lua`.
   - Rockspecs, license, readme, etc should be in the top level.
   - Tests should be in a top-level spec folder.
   - Executables should be in a top-level bin folder.
@@ -787,14 +810,15 @@ you find any mistakes or typos.
       LICENSE.md
     ```
 
-## <a name='testing'>Testing</a>
+## Testing
 
-  - Use [busted](http://olivinelabs.com/busted) and write lots of tests in a /spec
-    folder. Separate tests by module.
-  - Use descriptive `describe` and `it` blocks so it's obvious to see what
-    precisely is failing.
-  - Test interfaces. Don't test private methods. If you need to test something
-    that is private, it probably shouldn't be private in the first place.
+  - Use [busted](http://olivinelabs.com/busted) and write lots of
+    tests in a /spec folder. Separate tests by module.
+  - Use descriptive `describe` and `it` blocks so it's obvious to
+    see what precisely is failing.
+  - Test interfaces. Don't test private methods. If you need to test
+    something that is private, it probably shouldn't be private in
+    the first place.
   - Example:
 
     ```
@@ -820,15 +844,15 @@ you find any mistakes or typos.
 
     **[[⬆]](#TOC)**
 
-## <a name='contributors'>Contributors</a>
+## Contributors
 
-  - [View contributors](https://github.com/Olivine-Labs/lua-style-guide/graphs/contributors)
+  - [View contributors](https://github.com/hslua/lua-style-guide/graphs/contributors)
 
     **[[⬆]](#TOC)**
 
-## <a name='license'>License</a>
+## License
 
-  - Released under CC0 (Public Domain).
-    Information can be found at [http://creativecommons.org/publicdomain/zero/1.0/](http://creativecommons.org/publicdomain/zero/1.0/).
+  - Released under CC0 (Public Domain). Information can be found at
+    <http://creativecommons.org/publicdomain/zero/1.0/>.
 
 **[[⬆]](#TOC)**
