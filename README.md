@@ -476,8 +476,7 @@ if you find any mistakes or typos.
 
 ## Whitespace
 
-  - Use soft tabs set to 2 spaces. Tab characters and 4-space tabs
-    result in public flogging.
+  - Use two spaces for indentation.
 
     ```lua
     -- bad
